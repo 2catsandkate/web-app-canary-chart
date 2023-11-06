@@ -1,0 +1,12 @@
+canary_deployment: true
+total_replicaCount: 10
+canary_replicaCount: 1
+primary_image:
+  repository: "ikambarov/web-app"
+  tag: "1.0.0"
+canary_image:
+  repository: "ikambarov/web-app"
+  tag: "1.0.1"
+containerPort: 80
+serviceType: "LoadBalancer"
+servicePort: 80

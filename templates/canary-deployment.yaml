@@ -1,0 +1,33 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  labels:
+    app: {{ .Release.Name }}-canary-deploy
+  name: {{ .Release.Name }}-canary-deploy
+spec:
+  strategy:
+    rollingUpdate:
+      maxSurge: 10%
+      maxUnavailable: 10%
+  {{- if .Values.canary_deployment }}
+  replicas: {{ .Values.canary_replicaCount }}
+  {{- else }}
+  replicas: 0
+  {{- end }}
+  selector:
+    matchLabels:
+      app: {{ .Release.Name }}-deploy
+      type: canary
+  template:
+    metadata:
+      labels:
+        app: {{ .Release.Name }}-deploy
+        type: canary
+        version: {{ .Values.canary_image.tag }}
+    spec:
+      containers:
+      - image: {{ .Values.canary_image.repository }}:{{ .Values.canary_image.tag }}
+        name: flaskex
+        ports:
+        - containerPort: {{ .Values.containerPort }}
+        
