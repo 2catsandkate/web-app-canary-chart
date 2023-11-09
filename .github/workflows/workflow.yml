@@ -7,9 +7,9 @@ on:
         type: choice
         description: Run Canary
         options: 
-        - Yes
-        - No
-        
+        - "Yes"
+        - "No"
+
 jobs:
   deploy:
     runs-on: ubuntu-latest
