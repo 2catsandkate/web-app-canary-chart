@@ -27,10 +27,10 @@ jobs:
 
 
       - name: Enable Canary Deployment
-        if: "${{ github.event.inputs.cananry == 'Yes' }}"  
+        if: "${{ github.event.inputs.canary == 'Yes' }}"  
         run: helm upgrade --install --set canary_deployment=true myapp web-app-canary-chart/
 
       - name: Disable Canary Deployment  
-        if: "${{ github.event.inputs.cananry == 'No' }}"  
+        if: "${{ github.event.inputs.canary == 'No' }}"  
         run: helm upgrade --install --set canary_deployment=false myapp web-app-canary-chart/
 
