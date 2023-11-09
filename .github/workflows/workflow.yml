@@ -25,5 +25,12 @@ jobs:
           token:      ${{ secrets.K8S_SA_TOKEN }}
           namespace:  default
 
-      - name: Check kubectl
-        run: kubectl version 
+
+      - name: Enable Canary Deployment
+        if: "${{ github.event.inputs.cananry == 'Yes' }}"  
+        run: helm upgrade --install --set canary_deployment=true myapp web-app-canary-chart/
+
+      - name: Disable Canary Deployment  
+        if: "${{ github.event.inputs.cananry == 'No' }}"  
+        run: helm upgrade --install --set canary_deployment=false myapp web-app-canary-chart/
+
