@@ -2,7 +2,14 @@ name: Canary Deployment
 
 on:
   workflow_dispatch:
-
+    inputs:
+      canary:
+        type: choice
+        description: Run Canary
+        options: 
+        - Yes
+        - No
+        
 jobs:
   deploy:
     runs-on: ubuntu-latest
