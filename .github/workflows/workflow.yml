@@ -25,12 +25,11 @@ jobs:
           token:      ${{ secrets.K8S_SA_TOKEN }}
           namespace:  default
 
-
       - name: Enable Canary Deployment
         if: "${{ github.event.inputs.canary == 'Yes' }}"  
-        run: helm upgrade --install --set canary_deployment=true myapp web-app-canary-chart/
+        run: helm upgrade --install --set canary_deployment=true myapp ./
 
       - name: Disable Canary Deployment  
         if: "${{ github.event.inputs.canary == 'No' }}"  
-        run: helm upgrade --install --set canary_deployment=false myapp web-app-canary-chart/
+        run: helm upgrade --install --set canary_deployment=false myapp ./
 
