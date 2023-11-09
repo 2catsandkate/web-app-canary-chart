@@ -27,7 +27,7 @@ spec:
     spec:
       containers:
       - image: {{ .Values.canary_image.repository }}:{{ .Values.canary_image.tag }}
-        name: flaskex
+        name: web-app
         ports:
         - containerPort: {{ .Values.containerPort }}
         

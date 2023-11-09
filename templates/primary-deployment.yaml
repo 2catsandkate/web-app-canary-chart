@@ -27,7 +27,7 @@ spec:
     spec:
       containers:
       - image: {{ .Values.primary_image.repository }}:{{ .Values.primary_image.tag }}
-        name: flaskex
+        name: web-app
         ports:
         - containerPort: {{ .Values.containerPort }}
         
